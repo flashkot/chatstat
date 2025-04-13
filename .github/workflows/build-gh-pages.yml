@@ -31,6 +31,7 @@ jobs:
         run: |
           npm ci
           npx npm-run-all buildcss:* build:*
+          ls .
           mv ./dist/chatstatcreator.html ./dist/index.html
           mkdir ./dist/gh-pages
           tar -czf ./dist/gh-pages/github-pages.tar.gz ./dist/index.html

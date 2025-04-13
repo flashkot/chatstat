@@ -9,8 +9,8 @@ export async function getWorker() {
     // eslint-disable-next-line no-undef
     chatstatContent = $fs.str("chatstat.iife.js");
   } catch {
-    workerURL = "/dist/chatstatworker/chatstat.worker.iife.js";
-    chatstatURL = "/dist/chatstat/chatstat.iife.js";
+    workerURL = "dist/chatstatworker/chatstat.worker.iife.js";
+    chatstatURL = "dist/chatstat/chatstat.iife.js";
   }
 
   const myWebWorker = new Worker(workerURL);

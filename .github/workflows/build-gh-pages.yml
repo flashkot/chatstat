@@ -31,7 +31,6 @@ jobs:
         run: |
           npm ci
           npx npm-run-all buildcss:* build:*
-          ls dist/
           mv ./dist/chatstatcreator.html ./dist/index.html
           mkdir ./dist/gh-pages
           tar -czf ./dist/gh-pages/github-pages.tar.gz ./dist/index.html
@@ -49,6 +48,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      id-token: write
+      pages: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

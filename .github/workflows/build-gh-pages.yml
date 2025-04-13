@@ -26,6 +26,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
+          npm ci
           npm run build
           mv chatstatcreator.html index.html
           mkdir dist/gh-pages

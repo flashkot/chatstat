@@ -7,6 +7,7 @@ import MonthSelector from "@/components/monthSelector.vue";
 import FullView from "./views/full-view.vue";
 import UsersView from "./views/users-view.vue";
 import InfoView from "./views/info-view.vue";
+import GithubLinks from "./components/github-links.vue";
 
 let userPrefTheme = "light";
 if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -38,12 +39,6 @@ watch(selectedTheme, () => {
     document.documentElement.dataset.theme = selectedTheme.value;
   }
 });
-
-// watch(selectedMonth, (newVal) => {
-//   if (newVal) {
-//     navigateTo("month", newVal);
-//   }
-// });
 
 function navigateTo(toMode, itemId) {
   applyNavigate(toMode, itemId);
@@ -101,7 +96,6 @@ window.addEventListener("popstate", parseLocation);
   <nav>
     <ul>
       <li>
-        <!--img :src="`temp/avatars/1843032328.webp`" id="chat-logo" /-->
         <strong>{{ store.stats?.name }}. ЧатСтат за</strong>
         <MonthSelector
           :modelValue="selectedMonth"
@@ -153,31 +147,39 @@ window.addEventListener("popstate", parseLocation);
       </li>
     </ul>
   </nav>
-  <div v-if="store.isLoaded">
+  <section v-if="store.isLoaded">
     <MonthView v-if="mode == 'month'" :selectedMonth="selectedMonth || store.latestMonth" />
     <FullView v-if="mode == 'full'" />
     <UsersView v-if="mode == 'users'" :showUser="selectedUser" />
     <InfoView v-if="mode == 'info'" />
-  </div>
-  <hr />
-  <p style="text-align: right; font-size: 12px">
-    Сгенерировано
-    {{ new Date(store.stats?.genTime * 1000).toLocaleString("ru-RU") }}
-  </p>
+  </section>
+  <footer>
+    <hr />
+    <nav>
+      <GithubLinks />
+      <p>
+        Сгенерировано
+        {{ new Date(store.stats?.genTime * 1000).toLocaleString("ru-RU") }}
+      </p>
+    </nav>
+  </footer>
 </template>
 
-<style scoped>
-select:not(:focus) {
-  border-color: #0000;
-  background-color: #0000;
+<style>
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-#chat-logo {
-  border-radius: 100%;
-  width: 48px;
-  height: 48px;
-  margin-right: 10px;
-  border: 2px solid darkgray;
+footer {
+  margin-top: auto;
+  font-size: 12px;
+}
+
+nav select:not(:focus) {
+  border-color: #0000;
+  background-color: #0000;
 }
 
 nav span.separator {

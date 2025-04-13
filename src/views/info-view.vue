@@ -132,7 +132,7 @@ watch(selectedTheme, () => {
 </script>
 
 <template>
-  <article class="">
+  <article>
     <h2>ЧатСтат</h2>
     <p>
       Версия сборки: <code> {{ store.appVersion ?? "dev" }}</code>
@@ -148,24 +148,9 @@ watch(selectedTheme, () => {
       Дата генерации статистики:
       {{ new Date(store.stats?.genTime * 1000).toLocaleString("ru-RU") }}
     </p>
-    <h4>Состав файла статистики:</h4>
-    <svg ref="chart"></svg>
   </article>
   <article>
-    <h2>Используемые библиотеки:</h2>
-    <ul>
-      <li><a href="https://vuejs.org/" target="_blank">vue.js</a></li>
-      <li><a href="https://pinia.vuejs.org/" target="_blank">pinia</a></li>
-      <li><a href="https://picocss.com/" target="_blank">pico.css</a></li>
-      <li>
-        <a href="https://d3js.org/" target="_blank">d3.js</a> + код из примеров:
-        <a href="https://observablehq.com/@d3/pie-chart/2" target="_blank">Pie</a>,
-        <a href="https://observablehq.com/@d3/multi-line-chart/2" target="_blank">Line</a>,
-        <a href="https://observablehq.com/@d3/calendar/2" target="_blank">Calendar</a>,
-        <a href="https://observablehq.com/@d3/nested-treemap" target="_blank">TreeMap</a>
-      </li>
-      <li><a href="https://toggles.dev/" target="_blank">toggles.dev</a> – переключатель режима</li>
-      <li><a href="https://fontawesome.com/" target="_blank">Font Awesome</a> – иконки</li>
-    </ul>
+    <h4>Состав файла статистики:</h4>
+    <svg ref="chart"></svg>
   </article>
 </template>

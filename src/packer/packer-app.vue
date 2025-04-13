@@ -3,6 +3,7 @@ import { nextTick, ref, useTemplateRef, watch } from "vue";
 import ThemeToggle from "@/components/theme-toggle.vue";
 import { getWorker } from "./getworker";
 import { saveFile } from "@/utils/savefile";
+import GithubLinks from "@/components/github-links.vue";
 
 const buildVersion = process.env.VITE_BUILD_VERSION;
 
@@ -232,22 +233,7 @@ function onWorkerMessage({ data }) {
   </article>
   <footer>
     <hr />
-    <small class="smaller">
-      Сделано с использованием: <a href="https://vuejs.org/" target="_blank">vue.js</a>,
-      <a href="https://picocss.com/" target="_blank">pico.css</a>,
-      <a href="https://toggles.dev/" target="_blank">toggles.dev</a>,
-      <a href="https://github.com/jasondavies/d3-cloud" target="_blank">d3-cloud</a>,
-      <a href="https://gitlab.com/rockerest/fast-mersenne-twister" target="_blank"
-        >fast-mersenne-twister</a
-      >, <a href="https://github.com/mazko/jssnowball" target="_blank">Snowball</a>,
-      <a href="https://github.com/mathiasbynens/punycode.js" target="_blank">punycode</a>,
-
-      <br />
-      Сжатие вариантом алгоритма zopfli из
-      <a href="https://github.com/fhanau/Efficient-Compression-Tool" target="_blank"
-        >Efficient Compression Tool</a
-      >
-    </small>
+    <GithubLinks />
   </footer>
 </template>
 
@@ -285,6 +271,7 @@ main {
 
 footer {
   margin-top: auto;
+  font-size: 12px;
 }
 
 .smaller,

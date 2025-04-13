@@ -31,9 +31,8 @@ jobs:
         run: |
           npm ci
           npx npm-run-all buildcss:* build:*
-          mv ./dist/chatstatcreator.html ./dist/index.html
           mkdir ./dist/gh-pages
-          tar -czf ./dist/gh-pages/github-pages.tar.gz ./dist/index.html
+          mv ./dist/chatstatcreator.html ./dist/gh-pages/index.html          
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1

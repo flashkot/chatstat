@@ -1,8 +1,5 @@
-import { execSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { pack } from "jspackcompress";
-
-const gitDescribe = execSync("git describe --dirty").toString().trimEnd();
 
 let worker = readFileSync("./dist/chatstatworker/chatstat.worker.iife.js");
 let mainScript = readFileSync("./dist/chatstatcreator/chatstatcreator.iife.js", "utf-8");
@@ -23,4 +20,4 @@ let opts = {
 
 let result = await pack(opts);
 
-writeFileSync(`./dist/csc-${gitDescribe}.html`, result.payload);
+writeFileSync(`./dist/chatstatcreator.html`, result.payload);

@@ -13,14 +13,15 @@ if (ln.nodeName == "svg") {
 setFavIcon();
 const pinia = createPinia();
 
-let mountNode = document.getElementById("main");
+let mountNode = document.getElementById("app");
 
 if (!mountNode) {
   mountNode = document.createElement("main");
   mountNode.id = "app";
-  mountNode.classList.add("container");
   document.body.textContent = "";
   document.body.appendChild(mountNode);
 }
+
+mountNode.classList.add("container");
 
 createApp(App, { packedSize: ln.textContent.length }).use(pinia).mount(mountNode);

@@ -3,14 +3,15 @@ import "theme-toggles/css/within.min.css";
 import { createApp } from "vue";
 import App from "./packer-app.vue";
 
-let mountNode = document.getElementById("main");
+let mountNode = document.getElementById("app");
 
 if (!mountNode) {
   mountNode = document.createElement("main");
   mountNode.id = "app";
-  mountNode.classList.add("container");
   document.body.textContent = "";
   document.body.appendChild(mountNode);
 }
+
+mountNode.classList.add("container");
 
 createApp(App).mount(mountNode);

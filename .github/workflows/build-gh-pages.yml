@@ -6,9 +6,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
+    branches: ["master"]
 
-# Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -27,19 +27,24 @@ jobs:
           fetch-tags: true
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Build and pack gh-pages
         run: |
           npm ci
           npx npm-run-all buildcss:* build:*
-          mkdir ./dist/gh-pages
-          mv ./dist/chatstatcreator.html ./dist/gh-pages/index.html          
+          mkdir -p ./dist/gh-pages/dist/chatstat
+          mkdir -p ./dist/gh-pages/dist/chatstatworker
+          mkdir -p ./dist/gh-pages/src/packer
+          mv ./index.html ./dist/gh-pages/
+          mv ./dist/chatstatcreator/chatstatcreator.iife.js ./dist/gh-pages/src/packer/main.js
+          mv ./dist/chatstat/chatstat.iife.js ./dist/gh-pages/dist/chatstat/
+          mv ./dist/chatstatworker/chatstat.worker.iife.js ./dist/gh-pages/dist/chatstatworker/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3.0.1
         with:
           # Artifact name
           path: ./dist/gh-pages/ # default is _site/
-          
+
   # Deployment job
   deploy:
     environment:

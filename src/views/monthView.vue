@@ -38,10 +38,7 @@ const monthTitile = computed(() => {
 <template>
   <h1>Про что же был {{ monthTitile }}?</h1>
   <article class="flex-container no-selection center-content">
-    <WordsCloud
-      :stats="monthStats.wordCloud"
-      :name="`${store.stats.chatName} - ${selectedMonth}`"
-    />
+    <WordsCloud :stats="monthStats.wordCloud" :name="`${store.stats.name} - ${selectedMonth}`" />
   </article>
   <article class="flex-container flex-no-wrap flex-align-center">
     <div class="flex-item">
@@ -53,7 +50,7 @@ const monthTitile = computed(() => {
   </article>
   <div class="flex-container">
     <article class="flex-container overflow-auto">
-      <StatsTable :data="monthStats" :name="`${store.stats.chatName} - ${selectedMonth}`" />
+      <StatsTable :data="monthStats" :name="`${store.stats.name} - ${selectedMonth}`" />
     </article>
     <article class="flex-container">
       <div class="flex-item center-content no-selection">

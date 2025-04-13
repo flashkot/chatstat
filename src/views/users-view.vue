@@ -148,7 +148,10 @@ function switchUser(ev) {
   </h1>
 
   <article class="flex-container no-selection center-content">
-    <WordsCloud :stats="monthStats.wordCloud" :name="`${store.stats.chatName} - ${selectedUser}`" />
+    <WordsCloud
+      :stats="monthStats.wordCloud"
+      :name="`${store.stats.name} - ${store.stats.users[selectedUser].name}`"
+    />
   </article>
 
   <article>

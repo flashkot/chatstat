@@ -27,7 +27,7 @@ const chatStats = computed(() => store.getStats());
   <div class="flex-container">
     <div class="flex-container">
       <article>
-        <StatsTable :data="chatStats" />
+        <StatsTable :data="chatStats" :name="`${store.stats.name} - all time`" />
       </article>
       <article class="flex-item center-content no-selection">
         <CalendarView :stats="chatStats.postPerDay" />

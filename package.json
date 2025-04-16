@@ -28,7 +28,7 @@
     "d3": "^7.9.0",
     "d3-cloud": "^1.2.7",
     "fast-mersenne-twister": "^1.0.3",
-    "jspackcompress": "^0.0.1",
+    "jspackcompress": "^0.1.1",
     "pinia": "^3.0.1",
     "punycode.js": "^2.3.1",
     "theme-toggles": "^4.10.1",

@@ -9,6 +9,7 @@ let opts = {
   compressionlevel: 9,
   script: mainScript,
   compactHtml: false,
+  universalDecoder: true,
   extraHead:
     '<title>ChatStat Creator</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/>',
   extraBody: "",

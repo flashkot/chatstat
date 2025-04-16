@@ -151,7 +151,7 @@ export const useChatStore = defineStore("chatStore", {
               stats.users[sU] = statsRowObj();
               stats.users[sU].id = sU;
               stats.users[sU].name = this.stats.users[sU].name;
-              stats.users[sU].color = `hsl(${sU * 18}, 50%, 50%)`;
+              stats.users[sU].color = `oklch(0.7 0.14 ${sU * 18})`;
             }
 
             for (let p in month.users[sU]) {

@@ -178,11 +178,11 @@ export function generateStats(data, conf = {}) {
       let stats = monthly[mY][mM].users[uId];
       let mStats = monthly[mY][mM];
 
+      _set(stats, "messages", 1);
+
       _set(monthly, mY, mM, "postPerDay", mD, 1);
       _set(monthly, mY, mM, "postPerWeekHour", mW, mH, 1);
 
-      // _set(total, "postPerDay", mY, mM, mD, 1);
-      // _set(total, "postPerWeekHour", mW, mH, 1);
       _set(usersTotal, uId, "postPerDay", mY, mM, mD, 1);
       _set(usersTotal, uId, "postPerWeekHour", mW, mH, 1);
 
@@ -197,7 +197,6 @@ export function generateStats(data, conf = {}) {
           _set(stats, prop, msg[prop] ?? 0);
         });
 
-        _set(stats, "messages", 1);
         _set(stats, "replies", msg.reply_to_message_id ? 1 : 0);
         _set(stats, "receivedReplies", msg.replies?.length ?? 0);
 

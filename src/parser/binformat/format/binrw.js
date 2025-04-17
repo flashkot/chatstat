@@ -41,8 +41,7 @@ export function createWriter() {
       if (c < 128) {
         data.push(c);
       } else if (c < 2048) {
-        data.push((c >> 6) | 192);
-        data.push((c & 63) | 128);
+        data.push((c >> 6) | 192, (c & 63) | 128);
       } else if (
         (c & 0xfc00) == 0xd800 &&
         i + 1 < str.length &&
@@ -50,14 +49,9 @@ export function createWriter() {
       ) {
         // Surrogate Pair
         c = 0x10000 + ((c & 0x03ff) << 10) + (str.charCodeAt(++i) & 0x03ff);
-        data.push((c >> 18) | 240);
-        data.push(((c >> 12) & 63) | 128);
-        data.push(((c >> 6) & 63) | 128);
-        data.push((c & 63) | 128);
+        data.push((c >> 18) | 240, ((c >> 12) & 63) | 128, ((c >> 6) & 63) | 128, (c & 63) | 128);
       } else {
-        data.push((c >> 12) | 224);
-        data.push(((c >> 6) & 63) | 128);
-        data.push((c & 63) | 128);
+        data.push((c >> 12) | 224, ((c >> 6) & 63) | 128, (c & 63) | 128);
       }
     }
 
@@ -137,14 +131,13 @@ export function createReader(data) {
       } else if (c1 > 191 && c1 < 224) {
         c2 = data[pos++];
         out += String.fromCharCode(((c1 & 31) << 6) | (c2 & 63));
-      } else if (c1 > 239 && c1 < 365) {
+      } else if (c1 > 239) {
         // Surrogate Pair
         c2 = data[pos++];
         c3 = data[pos++];
         c4 = data[pos++];
-        u = (((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63)) - 0x10000;
-        out += String.fromCharCode(0xd800 + (u >> 10));
-        out += String.fromCharCode(0xdc00 + (u & 1023));
+        u = ((c1 & 7) << 18) | ((c2 & 63) << 12) | ((c3 & 63) << 6) | (c4 & 63);
+        out += String.fromCodePoint(u);
       } else {
         c2 = data[pos++];
         c3 = data[pos++];

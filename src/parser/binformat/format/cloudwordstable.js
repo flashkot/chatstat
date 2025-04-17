@@ -20,7 +20,7 @@ export function readCloudWordsList(reader) {
       return;
     }
 
-    word += String.fromCharCode(cc);
+    word += String.fromCodePoint(cc);
   });
 
   children.push({ name: "words", value: reader.bytesRead() });
@@ -42,8 +42,8 @@ export function writeCloudWordsList(writer, data) {
   for (let w in data) {
     let word = data[w];
 
-    for (let i = 0; i < word.length; i++) {
-      let cc = word.charCodeAt(i);
+    for (let c of word) {
+      let cc = c.codePointAt();
 
       if (!alphabet[cc]) alphabet[cc] = 0;
       alphabet[cc]++;
@@ -65,8 +65,8 @@ export function writeCloudWordsList(writer, data) {
   for (let w in data) {
     let word = data[w];
 
-    for (let i = 0; i < word.length; i++) {
-      let cc = word.charCodeAt(i);
+    for (let c of word) {
+      let cc = c.codePointAt();
       ccArray.push(alphabet.indexOf(cc));
     }
 

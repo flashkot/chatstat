@@ -72,7 +72,11 @@ test.suite("Primitives writing/reading", () => {
   });
 
   test("Array of strings", () => {
-    let tests = [[], ["null"], ["a", "a", "a", "B", "a", "a", "u", "😀", "Проверочка!"]];
+    let tests = [
+      [],
+      ["null"],
+      ["a", "a", "a", "B", "a", "a", "u", "😀", "Проверочка!", "And some surrogate pairs here 👇"],
+    ];
 
     function doTests(data) {
       let w = createWriter();

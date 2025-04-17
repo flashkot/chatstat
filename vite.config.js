@@ -39,7 +39,7 @@ function getAliases(paths) {
   return aliases;
 }
 
-const gitDescribe = JSON.stringify(execSync("git describe --dirty").toString().trimEnd());
+const gitDescribe = JSON.stringify(execSync("git describe --tags --dirty").toString().trimEnd());
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {

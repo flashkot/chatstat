@@ -38,6 +38,7 @@ function sanitizeStr(str) {
       .replace(/(\p{Emoji_Presentation})/gimu, " $1 ")
       .replace(/\s+-|-\s+/gim, " ")
       .replace(/\s+/gm, " ")
+      .replace(/\uFE0E|\uFE0F/gm, "")
       .toLowerCase()
   );
 }

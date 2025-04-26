@@ -35,7 +35,7 @@ const nums = computed(() => ({
   vidMins: stats.video_seconds / 60,
   audMins: stats.audio_seconds / 60,
   mPixel: stats.megapixels / 1_000_000,
-  oterMB: stats.otherFileSize / 1_048_576,
+  otherMB: stats.otherFileSize / 1_048_576,
   totalMB: stats.totalFileSize / 1_048_576,
 }));
 </script>
@@ -47,7 +47,7 @@ const nums = computed(() => ({
     <strong>{{ numStr(stats.words) }}</strong>
     {{ getNoun(stats.words, "слово", "слова", "слов") }} и
     <strong>{{ numStr(stats.messages) }}</strong>
-    {{ getNoun(stats.words, "сообщение", "сообщения", "сообщений") }}. И всё это за {{ days }}
+    {{ getNoun(stats.messages, "сообщение", "сообщения", "сообщений") }}. И всё это за {{ days }}
     {{ getNoun(days, "день", "дня", "дней") }}. Если посчитать, то получится примерно
     {{ numStr(nums.wordsInMsg) }} {{ getNoun(nums.wordsInMsg, "слово", "слова", "слов") }} в
     сообщении и {{ numStr(nums.msgsInDay) }}
@@ -65,8 +65,8 @@ const nums = computed(() => ({
       numStr(stats.images)
     }}
     {{ getNoun(stats.images, "файл", "файла", "файлов") }}). Кроме этого было ещё
-    {{ numStr(stats.otherFiles) }} прочих файликов на {{ numStr(nums.oterMB) }}
-    {{ getNoun(stats.audios, "мегабайт", "мегабайта", "мегабайт") }}.
+    {{ numStr(stats.otherFiles) }} прочих файликов на {{ numStr(nums.otherMB) }}
+    {{ getNoun(stats.otherMB, "мегабайт", "мегабайта", "мегабайт") }}.
   </p>
   <p>
     Вся эта медиа-радость весит {{ numStr(nums.totalMB) }}
